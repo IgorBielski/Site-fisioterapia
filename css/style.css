@@ -426,3 +426,90 @@ section + section{ border-top: 1px solid var(--linha); }
 .figura-exercicio figcaption strong{ display:block; color: var(--vinho-escuro); font-family: var(--serif); font-size:1rem; margin-bottom:2px; }
 @media (max-width: 980px){ .figura-exercicio{ flex-basis: calc(50% - 11px); } }
 @media (max-width: 480px){ .grade-exercicio{ gap:14px; } .figura-exercicio{ flex-basis: calc(50% - 7px); } }
+
+
+/* =========================================================
+   AJUSTES PARA CELULAR — tudo dentro de media queries,
+   o layout de computador não é alterado.
+   ========================================================= */
+.dica-deslize{ display:none; }
+
+@media (max-width: 900px){
+  /* o blur do cabeçalho prende o menu "fixed" dentro dele; no celular o fundo fica sólido */
+  .cabecalho{ backdrop-filter:none; -webkit-backdrop-filter:none; background: var(--rosa-fundo); }
+  .cabecalho .container{ min-height: 64px; padding-top:8px; padding-bottom:8px; }
+  .btn-menu{ padding: 12px; margin-right:-12px; }
+  .nav-principal{
+    inset: 65px 0 0 0; z-index:99; visibility:hidden;
+    transition: transform .28s ease, visibility 0s linear .28s;
+  }
+  .nav-principal.aberto{ visibility:visible; transition: transform .28s ease; }
+  .nav-principal ul{ gap:0; }
+  .nav-principal ul li{ border-bottom:1px solid var(--linha); }
+  .nav-principal ul a{ display:block; padding: 15px 0; font-size:1.08rem; }
+  .nav-principal a::after{ display:none; }
+  .nav-principal a.ativo{ color: var(--rosa); }
+  .nav-principal .btn{ width:100%; margin-top: 28px; color: var(--branco); }
+}
+
+@media (max-width: 700px){
+  .container{ padding: 0 20px; }
+  section{ padding: 56px 0; }
+  .section-head{ margin-bottom: 32px; }
+  .marca .nome{ font-size:1.2rem; }
+  .marca .sub{ font-size:0.68rem; }
+  h1{ font-size: clamp(2rem, 8.5vw, 2.5rem); }
+  .lede{ font-size:1.05rem; }
+
+  .btn{ min-height:48px; padding: 12px 22px; }
+  .hero{ padding: 32px 0 56px; }
+  .hero .container{ gap: 36px; }
+  .hero-figura{ order:2; max-width: 320px; width:100%; margin: 0 auto; border-radius: 20px 72px 20px 20px; }
+  .hero-selo{ left:12px; bottom:14px; padding:12px 14px; max-width: 190px; font-size:0.78rem; }
+  .hero-selo strong{ font-size:1.25rem; }
+  .hero-acoes .btn{ flex:1 1 100%; }
+
+  .aviso{ padding: 16px 18px; font-size:0.92rem; gap:12px; }
+  .cartao-info, .fase{ padding: 22px 20px; }
+  .duas-colunas{ gap: 32px; }
+  .destaque-numero{ padding: 24px 20px; }
+  .ficha-tecnica{ padding: 24px 20px; }
+  .ficha-tecnica dl{ grid-template-columns: 1fr; gap: 2px; }
+  .ficha-tecnica dd{ margin-bottom:12px; }
+
+  .item-acordeao button{ padding: 18px 2px; font-size:1rem; min-height:56px; }
+  .item-acordeao .resposta-inner{ padding-right: 8px; }
+
+  .barra-busca{ gap:14px; }
+  .campo-busca{ min-width:0; width:100%; flex:1 1 100%; font-size:1rem; }
+  .filtros{ flex-wrap:nowrap; overflow-x:auto; margin:0 -20px; padding:2px 20px 8px; scrollbar-width:none; }
+  .filtros::-webkit-scrollbar{ display:none; }
+  .filtro{ flex-shrink:0; padding: 11px 18px; }
+
+  .encerramento{ padding: 64px 0; }
+  .encerramento .pilares{ gap:10px; }
+  .rodape{ padding: 44px 0 24px; }
+  .rodape .container{ gap: 28px; }
+  .rodape a{ display:inline-block; padding:4px 0; }
+
+  .topo{ bottom: max(16px, env(safe-area-inset-bottom)); right:16px; width:48px; height:48px; }
+
+  /* galeria de exercícios vira carrossel com rolagem lateral */
+  .dica-deslize{ display:block; font-size:0.9rem; color: var(--rosa); font-weight:700; margin-top:-4px; }
+  .bloco-exercicio{ margin-bottom: 36px; }
+  .bloco-exercicio h3{ font-size:1.15rem; align-items:flex-start; }
+  .num-exercicio{ width:32px; height:32px; font-size:0.92rem; }
+  .grade-exercicio{
+    flex-wrap:nowrap; overflow-x:auto; gap:14px;
+    margin: 0 -20px; padding: 4px 20px 16px;
+    scroll-snap-type: x mandatory; scroll-padding: 0 20px;
+    -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: var(--rosa) transparent;
+  }
+  .figura-exercicio{ flex: 0 0 64%; max-width: 280px; scroll-snap-align: start; }
+}
+
+@media (max-width: 380px){
+  .container{ padding: 0 16px; }
+  .grade-exercicio{ margin: 0 -16px; padding-left:16px; padding-right:16px; scroll-padding: 0 16px; }
+  .filtros{ margin: 0 -16px; padding-left:16px; padding-right:16px; }
+}
